@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Động Từ Bất Quy Tắc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Khu vực Progress và Search Bar -->
+    <div class="top-bar">
+        <div class="progress">
+            <a href="#" id="progress-text">Word 1 of 100</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search verb or meaning...">
+        </div>
+    </div>
+
+    <div class="card-container" id="card-container">
+        <div class="card" id="card">
+            
+            <!-- Mặt trước thẻ -->
+            <div class="card-face card-front">
+                <div class="atomic-number" id="f-number">1</div>
+                <div class="symbol" id="f-symbol">Be - Was/Were</div>
+                <div class="name" id="f-name">be - was/were /biː/ - /wɒz/, /wɜː(r)/</div>
+                <div class="weight" id="f-weight"></div>
+                <div class="tap-hint" data-en="Click Card To Flip" data-vi="Bấm Vào Thẻ Để Lật">Click Card To Flip</div>
+            </div>
+
+            <!-- Mặt sau thẻ -->
+            <div class="card-face card-back">
+                <h3 id="b-category">VERB</h3>
+                <div class="info-group">
+                    <div class="info-item">
+                        <span data-en="Meaning:" data-vi="Định Nghĩa:">Meaning:</span>
+                        <span id="b-config">Thì, là, ở</span>
+                    </div>
+                    <div class="info-item">
+                        <span data-en="Grammar Type:" data-vi="Trạng Thái Chuẩn:">Grammar Type:</span>
+                        <span id="b-state">Irregular</span>
+                    </div>
+                    <span id="b-discoverer" style="display: none;"></span>
+                </div>
+                <div class="tap-hint" data-en="Click Card To Flip" data-vi="Bấm Vào Thẻ Để Lật">Click Card To Flip</div>
+            </div>
+
+        </div>
+    </div>
+
+   <div class="controls">
+        <button id="prev-btn" class="nav-btn" data-en="Previous" data-vi="Trước Đó">Previous</button>
+        
+        <div class="play-hub" id="play-hub">
+            <button id="main-play-btn" type="button" data-en="Play" data-vi="Phát">Play</button>
+            <div class="speed-options">
+                <button type="button" data-speed="2000">2s</button>
+                <button type="button" data-speed="5000">5s</button>
+                <button type="button" data-speed="10000">10s</button>
+            </div>
+        </div>
+
+        <button id="next-btn" class="nav-btn" data-en="Next" data-vi="Tiếp Theo">Next</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function applyLanguageTranslation() {
+            const currentLang = localStorage.getItem("pageLang") || "en";
+            document.querySelectorAll("[data-en]").forEach(el => {
+                const targetText = el.getAttribute(`data-${currentLang}`);
+                if (targetText) {
+                    el.innerText = targetText;
+                }
+            });
+            
+            // Cập nhật placeholder cho ô tìm kiếm dựa theo ngôn ngữ
+            const searchInput = document.getElementById("search-input");
+            if (searchInput) {
+                searchInput.placeholder = currentLang === "vi" ? "Tìm động từ hoặc ý nghĩa..." : "Search verb or meaning...";
+            }
+        }
+        applyLanguageTranslation();
+    });
+    </script>
+</body>
+</html>
